@@ -250,7 +250,7 @@ ORDER By  salary ASC
 ORDER By  salary DESC
 ```
 
-##### จำกัดจำนวนบรรทัดด้วย LIMIT
+##### จำกัดข้อมูลในการแสดงผลด้วย LIMIT
 - จำกัดข้อมูลในการแสดงผล
 
 ```bash
@@ -260,3 +260,34 @@ WHERE address = "กรุงเทพมหานคร"
 ORDER By salary DESC
 LIMIT 3 #ข้อมูล 3 ชุดแรก
 ```
+
+##### เพิ่มข้อมูลด้วยข้อมูลตารางอื่น
+- นำข้อมูลในตาราง A ไปบันทึกลงในตาราง B 
+- ชนิดข้อมูลต้องตรงกัน
+
+ตาราง Product
+| Name | Type  |
+| ---- | ----- |
+| product_id   | TEXT NOT NULL |
+| product_name | TEXT NOT NULL UNIQUE |
+| description  | TEXT |
+| price        | REAL NOT NULL CHECK("price" >= 100) |
+
+
+ตาราง Product_Place
+| Name | Type |
+| ---- | ---- |
+| id   | TEXT NOT NULL |
+| name | TEXT NOT NULL UNIQUE |
+| price  | REAL NOT NULL |
+| market | TEXT NOT NULL DEFAULT 'ตลาดสด' |
+
+
+```bash
+#ทำการดึง product_id,product_name,price จากตาราง Product มาใส่ตาราง Product_Place
+INSERT  INTO Product_Place (id,name,price)
+SELECT product_id,product_name,price
+FROM Products
+WHERE เงื่อนไขที่ต้องการ
+```
+
