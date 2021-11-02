@@ -374,3 +374,16 @@ WHERE address like "%ย%"
 WHERE address like "ก%ร"
 ```
 
+##### ตัวดำเนินการทางคณิตศาสตร์ (+ - * /)
+
+```bash
+SELECT fname AS  "ชื่อพนักงาน", 
+ lname AS "นามสกุลพนักงาน", 
+ salary AS "เงินเดือน",
+ salary + 2000 AS "ค่าบำรุงอุปกรณ์",
+ salary - 1000 AS "ค่าเดินทาง",
+ salary * 12 AS "รายได้ต่อปี",
+ salary /  30 AS "รายได้ต่อวัน"
+FROM Employee
+```
+
