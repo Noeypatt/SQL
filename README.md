@@ -448,3 +448,41 @@ ELSE "สมาชิกทั่วไป" END) AS "ตำแหน่ง"
 FROM Employee
 ORDER By salary DESC
 ```
+
+##### LIKE ร่วมกับ CASE...WHEN
+
+ตาราง Skills
+```bash
+CREATE TABLE "Skills" (
+	"id"	INTEGER NOT NULL,
+	"name"	TEXT NOT NULL,
+	"language"	TEXT,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
+
+#นำชื่อพนักงานมาใส่
+INSERT INTO Skills(name)
+SELECT fname 
+FROM Employee
+
+#อัปเดตภาษาที่พนักงานทุกคนที่ชื่อมี ส เป็นตัวประกอบ
+UPDATE Skills
+SET language = "ภาษาอังกฤษ ภาษาจีน"
+WHERE name like "%ส%"
+```
+
+```base
+#ดูว่าพนักงานแต่ละคนสามารถสื่อสารได้กี่ภาษา
+SELECT 
+name,
+language,
+(CASE 
+WHEN language like "%ภาษา%ภาษา%ภาษา%" THEN 3
+WHEN language like "%ภาษา%ภาษา%" THEN 2
+WHEN language like "%ภาษา%" THEN 1
+ELSE 0 END
+) AS "จำนวนภาษา"
+FROM Skills
+```
+
+
