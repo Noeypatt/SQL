@@ -282,12 +282,29 @@ LIMIT 3 #ข้อมูล 3 ชุดแรก
 | price  | REAL NOT NULL |
 | market | TEXT NOT NULL DEFAULT 'ตลาดสด' |
 
-
 ```bash
 #ทำการดึง product_id,product_name,price จากตาราง Product มาใส่ตาราง Product_Place
 INSERT  INTO Product_Place (id,name,price)
 SELECT product_id,product_name,price
 FROM Products
 WHERE เงื่อนไขที่ต้องการ
+```
+
+##### การอัปเดตข้อมูลในตาราง
+```bash
+UPDATE Employee
+
+#แก้ไขข้อมูลทีละคอลัมน์
+#ให้พนักงานที่ id=10 เปลี่ยนชื่อเป็น "ธิดา ภูคำเวียง"
+SET fname="ธิดา", lname="ภูคำเวียง"
+WHERE id="10"
+
+#แก้ไขข้อมูลทีละหลายๆแถว
+#ให้พนักงานทุกคนที่ยังไม่ใส่เบอร์โทร ให้มีเบอร์โทรเป็นเบอร์ "02-xxxxxx"
+SET tel = "02-xxxxxx"
+WHERE tel IS NULL
+#ให้พนักงานทุกคนที่อาศัยอยู่ที่ กรุงเทพมหานคร มีเงินเดือน 25000
+SET salary=25000
+WHERE address="กรุงเทพมหานคร"
 ```
 
