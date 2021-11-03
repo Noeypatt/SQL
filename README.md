@@ -559,4 +559,13 @@ SELECT fname,lname,address FROM Employee
 WHERE address = (SELECT city FROM Customer WHERE fname ="โจศักดิ์")
 ```
 
+##### สร้างตารางด้วย Sub Query
+
+```bash
+#มาเก็บลงอีกตาราง เพื่อทำเป็นตารางพนักงานดีเด่น (ถ้ายังไม่มีตารางดังกล่าว จะทำการสร้างตารางใหม่ขึ้นมา)
+CREATE TABLE bestEmployee AS
+#นำข้อมูลของพนักงานที่อาศัยอยู่จังหวัดเดียวกับลูกค้าชื่อ "โจศักดิ์" และตัวพนักงานมีเงินเดือนมากกว่า 15000 (เพิ่มเงินเดือนให้)
+SELECT id ,fname ,lname,address,salary + 5000 AS "salary" FROM Employee
+WHERE address = (SELECT city FROM Customer WHERE fname ="โจศักดิ์" ) AND salary > 20000
+```
 
