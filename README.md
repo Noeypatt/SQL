@@ -625,3 +625,22 @@ FROM Products,Categories
 #โดยมีเงื่อนไขว่า รหัสหมวดหมู่ของสินค้าในตาราง Products ต้องตรงกับรหัสของหมวดหมู่ในตาราง Categories
 WHERE Products.type_id = Categories.id
 ```
+
+##### การรวมตารางด้วย JOIN
+- เป็นการรวมตารางโดยนำคีย์จาก 2 ตารางขึ้นไปมาสร้างความสัมพันธ์ และดึงข้อมูลที่ต้องการมาแสดง
+- สามารถใช้คำสั่ง `WHERE | GROUP BY | HAVING | ORDER BY | LIMIT`
+
+##### INNER JOIN
+- แสดงข้อมูล 2 ตารางขึ้นไปที่มีค่าเหมือนกันในคอลัมน์ที่ระบุ (คล้ายการรวมตารางด้วย WHERE)
+- เอาส่วนที่ union กัน
+
+```bash
+SELECT Products.product_name AS "ชื่อสินค้า",Products.price AS "ราคา",Categories.name AS "หมวดหมู่" 
+#เชื่อมด้วย INNER JOIN
+FROM Products INNER JOIN Categories
+#ON กำหนดค่าที่มันตรงกัน
+ON Products.type_id = Categories.id
+#เพิ่มเงื่อนไข หรือการทำงานอื่นๆได้
+WHERE Categories.name = "เครื่องใช้ไฟฟ้า" 
+ORDER By Products.price DESC
+```
