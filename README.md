@@ -611,3 +611,17 @@ CREATE TABLE "Categories" (
 	PRIMARY KEY("id")
 );
 ```
+
+##### รวมตารางด้วย WHERE
+- ใช้ type_id ของ product เป็น Foreign Key ชี้ไปยัง id ของตาราง categories
+- เปรียบเทียบภายในคำสั่ง `WHERE` ด้วยเครื่องหมาย `=`
+- ไม่สามารถใส่เงื่อนไขอื่นเพิ่มเติมได้ (ต้องย้ายไปใช้คำสั่ง JOIN)
+- ข้อมูลต้องมีความสัมพันธ์กัน ถึงจะเอามาแสดง เช่นถ้าในตาราง Products ไม่ได้ใส่ type_id ไว้ ข้อมูลชุดนี้ก็จะไม่ถูกนำมาแสดง
+
+```bash
+#นำข้อมูล ชื่อสินค้ากับราคา จากตาราง Products และชื่อหมวดหมู่จากตาราง Categories มาแสดง
+SELECT Products.product_name AS "ชื่อสินค้า",Products.price AS "ราคา",Categories.name AS "หมวดหมู่" 
+FROM Products,Categories
+#โดยมีเงื่อนไขว่า รหัสหมวดหมู่ของสินค้าในตาราง Products ต้องตรงกับรหัสของหมวดหมู่ในตาราง Categories
+WHERE Products.type_id = Categories.id
+```
