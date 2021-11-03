@@ -644,3 +644,17 @@ ON Products.type_id = Categories.id
 WHERE Categories.name = "เครื่องใช้ไฟฟ้า" 
 ORDER By Products.price DESC
 ```
+
+##### LEFT JOIN
+- แสดงข้อมูล 2 ตาราง โดยใช้ตารางที่อยู่ด้ายซ้ายของคำสั่ง `JOIN` เป็นตัวตั้ง 
+- จากนั้นไปเลือกข้อมูลที่อยู่ด้ายขวาของคำสั่ง `JOIN` ที่มีค่าคีย์ตรงกัน
+- เอาส่วนที่วงกลมฝั่งซ้ายทั้งหมด
+- เอาตารางด้านซ้ายของคำสั่ง `LEFT JOIN` เป็นตัวตั้ง 
+(เช่น  ต่อให้ไม่ได้ระบุ type_id ในตาราง Products ไว้ ข้อมูลชุดนี้ก็จะถูกนำมาแสดง เพราะยึดตาราง Products เป็นหลัก)
+
+```bash
+SELECT Products.product_name AS "ชื่อสินค้า",Products.price AS "ราคา",Categories.name AS "หมวดหมู่" 
+#เอาตาราง Products เป็นตัวตั้ง
+FROM Products LEFT JOIN Categories
+ON Products.type_id = Categories.id
+```
