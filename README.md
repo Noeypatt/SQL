@@ -569,3 +569,45 @@ SELECT id ,fname ,lname,address,salary + 5000 AS "salary" FROM Employee
 WHERE address = (SELECT city FROM Customer WHERE fname ="โจศักดิ์" ) AND salary > 20000
 ```
 
+##### การเชื่อมตาราง / การรวมตาราง (Join Table)
+- การนำเอาตาราง 2 ตารางมารวมกันโดยข้อมูลจะต้องมีส่วนที่เชื่อมกันได้ในทั้ง 2 ตาราง
+- โดยดำเนินการผ่าน Primary Key (PK) และ Foreign Key (FK)
+- Primary Key: คีย์หลัก
+- Foreign Key: คีย์รอง
+
+ตารางข้อมูลสินค้า (Product)
+| key          | คำอธิบาย        |     
+| ------------ | -------------- |
+| product_id   | รหัสสินค้า(PK)    |
+| product_name | ชื่อสินค้า         |
+| price        | ราคา           |
+| unit         | หน่วย           | 
+| type_id      | ประเภทสินค้า(FK) |
+| status       | สถานะ          |
+
+```bash
+CREATE TABLE "Products" (
+	"product_id"	TEXT,
+	"product_name"	TEXT,
+	"price"	REAL,
+	"unit"	TEXT DEFAULT '-',
+	"type_id"	TEXT,
+	"status"	INTEGER,
+	PRIMARY KEY("product_id")
+);
+```
+
+ตารางข้อมูลประเภทสินค้า (Categories)
+| key  | คำอธิบาย        |     
+| ---- | -------------- |
+| id   | รหัสสินค้า(PK)    |
+| name | ชื่อสินค้า         |
+
+
+```bash
+CREATE TABLE "Categories" (
+	"id"	TEXT,
+	"name"	TEXT NOT NULL,
+	PRIMARY KEY("id")
+);
+```
