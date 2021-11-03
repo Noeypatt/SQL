@@ -489,7 +489,7 @@ FROM Skills
 - ใช้งานร่วมกับคำสั่ง `SELECT`
 - จัดกลุ่มข้อมูลที่มีลักษณะซ้ำกัน เพื่อใช้ในการค้นหา
 - ใช้สรุปข้อมูล (จำนวนทั้งหมด)
-- SELECT | WHERE | GROUP BY
+- SELECT | GROUP BY
 
 ```bash
 SELECT * FROM Employee
@@ -516,4 +516,20 @@ avg(salary) AS "ค่าเฉลี่ยเงินเดือน",sum(sala
 FROM Employee
 GROUP BY address
 ```
+
+##### เงื่อนไขกลุ่มข้อมูล (Having)
+- ทำงานรวมกับ GROUP BY
+- หลังจากจัดกลุ่มเสร็จ ต้องการกำหนดเงื่อนไขลงไป
+- เป็นการกำหนดเงื่อนไขให้กลุ่มข้อมูล
+
+```bash
+#หาเงินเดือนรวมตามข้อมูลที่อยู่ (GROUP BY address)
+SELECT address AS "ที่อยู่" , count(*) AS "จำนวน" ,sum(salary) AS "เงินเดือนรวม"
+FROM Employee
+GROUP BY address
+#โดยมีเงื่อนไขว่าจะกรองข้อมูลเอาเฉพาะจังหวัดที่มีเงินเดือนรวม >= 25000
+HAVING sum(salary) >=25000
+```
+
+
 
