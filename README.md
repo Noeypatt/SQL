@@ -684,3 +684,23 @@ SELECT Products.product_name AS "ชื่อสินค้า",Products.price 
 FROM Products RIGHT JOIN Categories
 ON Products.type_id = Categories.id
 ```
+
+##### FULL JOIN
+- แสดงข้อมูลทั้งหมดของทั้ง 2 ตาราง ทั้งข้อมูลที่เหมือนกัน และไม่เหมือนกัน
+- LEFT JOIN UNION RIGHT JOIN (เอาวงกลมทั้งหมด)
+
+```bash
+#รูปแบบที่ 1:UNION
+SELECT Products.product_name AS "ชื่อสินค้า",Products.price AS "ราคา",Categories.name AS "หมวดหมู่" 
+FROM Products RIGHT JOIN Categories
+ON Products.type_id = Categories.id
+UNION
+SELECT Products.product_name AS "ชื่อสินค้า",Products.price AS "ราคา",Categories.name AS "หมวดหมู่" 
+FROM Products LEFT JOIN Categories
+ON Products.type_id = Categories.id
+
+#รูปแบบที่ 2:FULL JOIN
+SELECT Products.product_name AS "ชื่อสินค้า",Products.price AS "ราคา",Categories.name AS "หมวดหมู่" 
+FROM Products FULL JOIN Categories
+ON Products.type_id = Categories.id
+```
