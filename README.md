@@ -485,4 +485,21 @@ ELSE 0 END
 FROM Skills
 ```
 
+##### จัดกลุ่ม Group By
+- ใช้งานร่วมกับคำสั่ง `SELECT`
+- จัดกลุ่มข้อมูลที่มีลักษณะซ้ำกัน เพื่อใช้ในการค้นหา
+- ใช้สรุปข้อมูล (จำนวนทั้งหมด)
+- SELECT | WHERE | GROUP BY
 
+```bash
+SELECT * FROM Employee
+#จัดกลุ่ม โดยไม่นำชื่อซ้ำมาแสดง
+GROUP BY fname 
+
+#จำนวนพนักงานในแต่ละจังหวัด"
+SELECT 
+address AS  "ที่อยู่",
+count(*) AS "จำนวนคนที่อยู่ในแต่ละจังหวัด"
+FROM Employee
+GROUP BY address 
+```
