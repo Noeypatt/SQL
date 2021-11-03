@@ -532,3 +532,31 @@ GROUP BY address
 HAVING sum(salary) >=25000 AND count(*)  > 1
 ```
 
+#####  Sub Query
+- เขียน query ซ้อน query
+- main query | sub query
+- sub query ต้องเขียนภายในวงเล็บ  
+- ไม่สามารถใช้ `ORDER BY | GROUP BY | BETWEEN` ต่อท้ายได้
+
+ตาราง Customer
+```bash
+CREATE TABLE "Customer" (
+	"id"	INTEGER NOT NULL,
+	"fname"	TEXT NOT NULL,
+	"lname"	TEXT NOT NULL,
+	"city"	TEXT,
+	"phone"	TEXT,
+	"email"	TEXT,
+	PRIMARY KEY("id")
+);
+```
+
+```bash
+#ทำการสอบถามว่ามีพนักงานคนใดบ้างที่อาศัยอยู่จังหวัดเดียวกับลูกค้า (ระบุชื่อลูกค้า)
+#main query
+SELECT fname,lname,address FROM Employee
+#sub query
+WHERE address = (SELECT city FROM Customer WHERE fname ="โจศักดิ์")
+```
+
+
