@@ -658,3 +658,15 @@ SELECT Products.product_name AS "ชื่อสินค้า",Products.price 
 FROM Products LEFT JOIN Categories
 ON Products.type_id = Categories.id
 ```
+
+##### OUTER JOIN
+- ตรงข้ามกับ `INNER JOIN`
+- สอบถามข้อมูลที่ไม่มีความสัมพันธ์กันเลย (เช่น สินค้าชนิดใดบางที่ไม่มีหมวดหมู่)
+
+```bash
+SELECT Products.product_name AS "ชื่อสินค้า",Products.price AS "ราคา",Categories.name AS "หมวดหมู่" 
+FROM Products LEFT JOIN Categories
+ON Products.type_id = Categories.id
+#ใช้งานร่วมกับ LEFT JOIN | RIGHT JOIN
+WHERE Products.type_id IS NULL
+```
