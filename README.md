@@ -646,7 +646,7 @@ ORDER By Products.price DESC
 ```
 
 ##### LEFT JOIN
-- แสดงข้อมูล 2 ตาราง โดยใช้ตารางที่อยู่ด้ายซ้ายของคำสั่ง `JOIN` เป็นตัวตั้ง 
+- แสดงข้อมูล 2 ตาราง โดยใช้ตารางที่อยู่ด้านซ้ายของคำสั่ง `JOIN` เป็นตัวตั้ง 
 - จากนั้นไปเลือกข้อมูลที่อยู่ด้ายขวาของคำสั่ง `JOIN` ที่มีค่าคีย์ตรงกัน
 - เอาส่วนที่วงกลมฝั่งซ้ายทั้งหมด
 - เอาตารางด้านซ้ายของคำสั่ง `LEFT JOIN` เป็นตัวตั้ง 
@@ -669,4 +669,18 @@ FROM Products LEFT JOIN Categories
 ON Products.type_id = Categories.id
 #ใช้งานร่วมกับ LEFT JOIN | RIGHT JOIN
 WHERE Products.type_id IS NULL
+```
+
+##### RIGHT JOIN
+- แสดงข้อมูล 2 ตาราง โดยใช้ตารางที่อยู่ด้านขวาของคำสั่ง `JOIN` เป็นตัวตั้ง 
+- จากนั้นไปเลือกข้อมูลที่อยู่ด้านซ้ายของคำสั่ง `JOIN` ที่มีค่าคีย์ตรงกัน
+- เอาส่วนที่วงกลมฝั่งขวาทั้งหมด
+- เอาตารางด้านขวาของคำสั่ง `RIGHT JOIN` เป็นตัวตั้ง 
+(ทุกหมวดหมู่ในตาราง Categories จะถูกแสดงทั้งหมด ต่อให้หมวดหมู่นั้นไม่มีความสัมพันธ์กับสินค้าใดเลยก็ตาม)
+
+```bash
+SELECT Products.product_name AS "ชื่อสินค้า",Products.price AS "ราคา",Categories.name AS "หมวดหมู่" 
+#เอาตาราง Categories เป็นตัวตั้ง
+FROM Products RIGHT JOIN Categories
+ON Products.type_id = Categories.id
 ```
